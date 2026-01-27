@@ -1,6 +1,6 @@
 services:
   mariadb:
-    build: ./mariadb
+    build: ./requirements/mariadb
     container_name: mariadb
     restart: unless-stopped
     env_file:
@@ -11,7 +11,7 @@ services:
       - backend
   
   wordpress:
-    build: ./wordpress
+    build: ./requirements/wordpress
     container_name: wordpress
     restart: unless-stopped
     env_file:
@@ -25,7 +25,7 @@ services:
       - frontend
 
   nginx:
-    build: ./nginx
+    build: ./requirements/nginx
     container_name: nginx
     restart: unless-stopped
     depends_on:
