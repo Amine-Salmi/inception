@@ -3,7 +3,6 @@ set -e
 
 DATADIR="/var/lib/mysql"
 
-#change owner to dirct
 mkdir -p "$DATADIR" /var/run/mysqld
 chown -R mysql:mysql "$DATADIR"
 chown -R mysql:mysql /var/run/mysqld
@@ -13,7 +12,7 @@ if [ ! -d "/var/lib/mysql/${MARIADB_DATABASE}" ]; then
     mysql_install_db --user=mysql --datadir="$DATADIR" 2>/dev/null || echo "DB already initialized"
 
     # temporary startup of the MariaDB server
-    mariadbd --user=mysql --bind-address=0.0.0.0 &
+    mariadbd --user=mysql &
     mariadb_pid="$!"
 
     echo "Waiting for mariadb to start.."
@@ -41,5 +40,4 @@ EOF
     wait "$mariadb_pid"
 fi
 
-exec mariadbd --user=mysql --bind-address=0.0.0.0
-
+exec mariadbd --user=mysql
