@@ -2,7 +2,7 @@ services:
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
-    restart: unless-stopped
+    restart: always
     env_file:
       - .env
     volumes:
@@ -13,7 +13,7 @@ services:
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
-    restart: unless-stopped
+    restart: always
     env_file:
       - .env
     depends_on:
@@ -27,7 +27,7 @@ services:
   nginx:
     build: ./requirements/nginx
     container_name: nginx
-    restart: unless-stopped
+    restart: always
     depends_on:
       - wordpress
     ports:
@@ -39,7 +39,17 @@ services:
 
 volumes:
   mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/mariadb
   wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/wordpress
 networks:
   backend:
   frontend:
