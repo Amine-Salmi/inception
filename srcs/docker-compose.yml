@@ -18,11 +18,21 @@ services:
       - .env
     depends_on:
       - mariadb
+      - redis
     volumes:
       - wordpress_data:/var/www/html
     networks:
       - backend
       - frontend
+
+  redis:
+    build: ./requirements/bonus/redis
+    container_name: redis
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - backend 
 
   nginx:
     build: ./requirements/nginx
