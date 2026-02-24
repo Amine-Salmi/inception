@@ -26,6 +26,12 @@ logs-wordpress:
 logs-mariadb:
 	@cd srcs && docker compose logs -f mariadb
 
+logs-redis:
+	@cd srcs && docker compose logs -f redis
+
+logs-ftp:
+	@cd srcs && docker compose logs -f ftp
+
 clean:
 	@cd srcs && docker compose down -v
 

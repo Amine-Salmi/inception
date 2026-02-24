@@ -32,7 +32,23 @@ services:
     env_file:
       - .env
     networks:
-      - backend 
+      - backend
+  
+  ftp:
+    build: ./requirements/bonus/ftp
+    container_name: ftp
+    restart: always
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - frontend
 
   nginx:
     build: ./requirements/nginx
