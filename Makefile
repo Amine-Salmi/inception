@@ -32,6 +32,9 @@ logs-redis:
 logs-ftp:
 	@cd srcs && docker compose logs -f ftp
 
+logs-portainer:
+	@cd srcs && docker compose logs -f portainer
+
 clean:
 	@cd srcs && docker compose down -v
 
