@@ -73,8 +73,6 @@ services:
     restart: always
     networks:
       - frontend
-    ports:
-      - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
