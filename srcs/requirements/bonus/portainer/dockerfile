@@ -1,0 +1,12 @@
+FROM debian:stable-slim
+
+RUN apt-get update && apt-get install -y wget
+
+RUN wget -q -O /tmp/portainer.tar.gz \
+    https://github.com/portainer/portainer/releases/download/2.33.7/portainer-2.33.7-linux-amd64.tar.gz \
+    && tar -xzf /tmp/portainer.tar.gz -C /opt \
+    && rm /tmp/portainer.tar.gz
+
+EXPOSE 9000
+
+CMD ["/opt/portainer/portainer", "--bind", "0.0.0.0:9000", "--base-url", "/portainer"]

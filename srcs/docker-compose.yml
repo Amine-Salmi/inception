@@ -50,12 +50,42 @@ services:
     networks:
       - frontend
 
+  adminer:
+    build: ./requirements/bonus/adminer
+    container_name: adminer
+    restart: always
+    depends_on:
+      - mariadb
+    networks:
+      - backend
+      - frontend
+  
+  static_website:
+    build: ./requirements/bonus/static_website
+    container_name: static_website
+    restart: always
+    networks:
+      - frontend
+  
+  portainer:
+    build: ./requirements/bonus/portainer
+    container_name: portainer
+    restart: always
+    networks:
+      - frontend
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   nginx:
     build: ./requirements/nginx
     container_name: nginx
     restart: always
     depends_on:
       - wordpress
+      - adminer
+      - static_website
     ports:
       - "443:443"
     volumes:
@@ -76,6 +106,8 @@ volumes:
       type: none
       o: bind
       device: ${HOME}/data/wordpress
+  portainer_data:
+
 networks:
   backend:
   frontend:

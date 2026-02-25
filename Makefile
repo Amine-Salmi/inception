@@ -41,4 +41,4 @@ fclean: clean
 
 re: fclean all
 
-.PHOMY: all build up status logs logs-nginx logs-wordpress logs-mariadb clean fclean re
+.PHONY: all build up down status logs logs-nginx logs-wordpress logs-mariadb logs-redis logs-ftp clean fclean re
