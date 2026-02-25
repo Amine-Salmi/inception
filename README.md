@@ -4,9 +4,11 @@
 
 ## 📌 Overview
 
-Inception is a System Administration project focused on containerization using Docker. The goal is to build and manage a secure and modular infrastructure composed of multiple interconnected services, each running in its own Docker container.
+Inception is a System Administration project focused on containerization using Docker and Docker Compose. The goal is to design and deploy a secure, modular web infrastructure composed of multiple interconnected services, each running in its own isolated container.
 
-This project demonstrates how to design, build, and deploy a complete web stack using Docker Compose inside a virtual machine.
+The infrastructure includes NGINX as a secure web server, WordPress as the web application, and MariaDB as the database. These services communicate through a dedicated Docker network and use persistent volumes to ensure data durability.
+
+This project demonstrates key concepts such as containerization, service isolation, secure communication using TLS, and multi-container orchestration with Docker Compose.
 
 ---
 
